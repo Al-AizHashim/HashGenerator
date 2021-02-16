@@ -16,11 +16,13 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding= FragmentHomeBinding.inflate(inflater, container, false)
-
+        setHasOptionsMenu(true)
 
         return binding.root
     }
 
-
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu,menu)
+    }
 
 }
