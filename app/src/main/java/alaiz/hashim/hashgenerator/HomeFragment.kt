@@ -3,6 +3,7 @@ package alaiz.hashim.hashgenerator
 import alaiz.hashim.hashgenerator.databinding.FragmentHomeBinding
 import android.os.Bundle
 import android.view.*
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 
 
@@ -17,7 +18,9 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding= FragmentHomeBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-
+        val hashAlgorithm=resources.getStringArray(R.array.hash_algorithm)
+        val arrayAdapter=ArrayAdapter(requireContext(),R.layout.drop_down_item,hashAlgorithm)
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
         return binding.root
     }
 

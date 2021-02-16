@@ -2,6 +2,10 @@
     <string name="app_name">HashGenerator</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <array name="hash_algorithm">
+        <item>SHA-256</item>
+        <item>SHA-512</item>
+        <item>MD5</item>
+    </array>
 
 </resources>
