@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
@@ -22,7 +25,9 @@ class HomeFragment : Fragment() {
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item, hashAlgorithm)
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
         binding.generateButton.setOnClickListener {
-            animation()
+            lifecycleScope.launch {
+                animation()
+            }
         }
 
         return binding.root
@@ -37,7 +42,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun animation() {
+    private suspend fun animation() {
         binding.titleTextView.animate().alpha(0f).duration = 400L
         binding.generateButton.animate().alpha(0f).duration = 400L
         binding.textInputLayout.animate()
@@ -48,5 +53,21 @@ class HomeFragment : Fragment() {
                 .alpha(0f)
                 .translationXBy(-1000f)
                 .duration = 400L
+        delay(300)
+        binding.successView.animate()
+                .alpha(1f).duration = 600L
+        binding.successView.animate()
+                .rotationBy(720f)
+                .duration = 600L
+        binding.successView.animate()
+                .scaleXBy(800f)
+                .duration = 800L
+        binding.successView.animate()
+                .scaleYBy(800f)
+                .duration = 800L
+
+        delay(500)
+        binding.successImageView.animate()
+                .alpha(1f).duration = 1000L
     }
 }
