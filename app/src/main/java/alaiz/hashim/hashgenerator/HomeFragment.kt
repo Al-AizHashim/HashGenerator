@@ -38,6 +38,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun animation() {
-        binding.titleTextView.animate().alpha(0f).duration=400
+        binding.titleTextView.animate().alpha(0f).duration=400L
+        binding.generateButton.animate().alpha(0f).duration=400L
+        binding.textInputLayout.animate().alpha(0f).duration=400L
+        binding.plainText.animate().alpha(0f).duration=400L
     }
 }
