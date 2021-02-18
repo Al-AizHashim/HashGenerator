@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/successFragment"
         android:name="alaiz.hashim.hashgenerator.SuccessFragment"
-        android:label="fragment_success"
+        android:label="Success"
         tools:layout="@layout/fragment_success" >
         <action
             android:id="@+id/action_successFragment_to_homeFragment"
