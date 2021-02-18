@@ -39,12 +39,9 @@ class HomeFragment : Fragment() {
         inflater.inflate(R.menu.home_menu, menu)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
     private suspend fun animation() {
+        binding.generateButton.isClickable=false
         binding.titleTextView.animate().alpha(0f).duration = 400L
         binding.generateButton.animate().alpha(0f).duration = 400L
         binding.textInputLayout.animate()
@@ -78,4 +75,10 @@ class HomeFragment : Fragment() {
         findNavController().navigate(R.id.action_homeFragment_to_successFragment)
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
