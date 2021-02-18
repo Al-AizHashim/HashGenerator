@@ -38,9 +38,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun animation() {
-        binding.titleTextView.animate().alpha(0f).duration=400L
-        binding.generateButton.animate().alpha(0f).duration=400L
-        binding.textInputLayout.animate().alpha(0f).duration=400L
-        binding.plainText.animate().alpha(0f).duration=400L
+        binding.titleTextView.animate().alpha(0f).duration = 400L
+        binding.generateButton.animate().alpha(0f).duration = 400L
+        binding.textInputLayout.animate()
+                .alpha(0f)
+                .translationXBy(1000f)
+                .duration = 400L
+        binding.plainText.animate()
+                .alpha(0f)
+                .translationXBy(-1000f)
+                .duration = 400L
     }
 }
