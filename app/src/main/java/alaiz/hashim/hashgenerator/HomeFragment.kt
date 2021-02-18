@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.delay
@@ -12,6 +13,8 @@ import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
+
+    val hashViewModel:HashViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -28,6 +31,7 @@ class HomeFragment : Fragment() {
         binding.generateButton.setOnClickListener {
             lifecycleScope.launch {
                 animation()
+                getHashedData()
                 navigateToSuccessFragment()
             }
         }
@@ -80,5 +84,9 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
+  fun getHashedData():String{
+     val hashAlgorithm= binding.autoCompleteTextView.text.toString()
+     val plaintext= binding.plainText.text.toString()
+      return hashViewModel.getHash(plaintext,hashAlgorithm)
+  }
 }
