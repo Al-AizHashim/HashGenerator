@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,8 +32,8 @@ class HomeFragment : Fragment() {
         binding.generateButton.setOnClickListener {
             lifecycleScope.launch {
                 animation()
-                getHashedData()
-                navigateToSuccessFragment()
+
+                navigateToSuccessFragment(getHashedData())
             }
         }
 
@@ -75,8 +76,9 @@ class HomeFragment : Fragment() {
         delay(1500)
     }
 
-    private fun navigateToSuccessFragment(){
-        findNavController().navigate(R.id.action_homeFragment_to_successFragment)
+    private fun navigateToSuccessFragment(digestValue:String){
+        val direction=HomeFragmentDirections.actionHomeFragmentToSuccessFragment(digestValue)
+        findNavController().navigate(direction)
 
     }
 
