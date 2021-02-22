@@ -26,9 +26,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-        val hashAlgorithm = resources.getStringArray(R.array.hash_algorithm)
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item, hashAlgorithm)
-        binding.autoCompleteTextView.setAdapter(arrayAdapter)
+
         binding.generateButton.setOnClickListener {
             lifecycleScope.launch {
                 animation()
@@ -38,6 +36,13 @@ class HomeFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val hashAlgorithm = resources.getStringArray(R.array.hash_algorithm)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.drop_down_item, hashAlgorithm)
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
