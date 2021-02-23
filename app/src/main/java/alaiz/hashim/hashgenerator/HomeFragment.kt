@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -28,14 +29,22 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
 
         binding.generateButton.setOnClickListener {
+            onGenerateButtonClicked()
+        }
+
+        return binding.root
+    }
+    private fun onGenerateButtonClicked(){
+        if(binding.plainText.text.isEmpty())
+        {
+            showSnackBar("Field Empty")
+        }else {
             lifecycleScope.launch {
                 animation()
 
                 navigateToSuccessFragment(getHashedData())
             }
         }
-
-        return binding.root
     }
 
     override fun onResume() {
@@ -96,4 +105,13 @@ class HomeFragment : Fragment() {
      val plaintext= binding.plainText.text.toString()
       return hashViewModel.getHash(plaintext,hashAlgorithm)
   }
+    private fun showSnackBar(message:String){
+        var snackBar= Snackbar.make(
+                binding.rootLayout,
+                message,
+                Snackbar.LENGTH_SHORT
+        )
+        snackBar.setAction("Okey"){}
+        snackBar.show()
+    }
 }
