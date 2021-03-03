@@ -106,7 +106,7 @@ class HomeFragment : Fragment() {
       return hashViewModel.getHash(plaintext,hashAlgorithm)
   }
     private fun showSnackBar(message:String){
-        var snackBar= Snackbar.make(
+        val snackBar= Snackbar.make(
                 binding.rootLayout,
                 message,
                 Snackbar.LENGTH_SHORT

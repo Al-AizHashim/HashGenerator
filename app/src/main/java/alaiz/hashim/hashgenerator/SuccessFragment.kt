@@ -1,6 +1,10 @@
 package alaiz.hashim.hashgenerator
 
 import alaiz.hashim.hashgenerator.databinding.FragmentSuccessBinding
+import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +23,9 @@ class SuccessFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentSuccessBinding.inflate(inflater, container, false)
+        binding.copyButton.setOnClickListener {
+            onCopyClicked()
+        }
 
         return binding.root
     }
@@ -27,5 +34,14 @@ class SuccessFragment : Fragment() {
         super.onStart()
         binding.hashDigest.text=args.digestValue
     }
+       private fun onCopyClicked(){
+            copyToClipboard(args.digestValue)
+        }
 
+    @SuppressLint("ServiceCast")
+    private fun copyToClipboard(hash:String){
+        val clipboardManager=requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val copyData=ClipData.newPlainText("digest value",hash)
+        clipboardManager.setPrimaryClip(copyData)
+    }
 }
