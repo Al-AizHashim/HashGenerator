@@ -61,7 +61,7 @@
         android:layout_marginTop="16dp"
         android:background="@color/dark_blue"
         android:gravity="start|top"
-        android:hint="text here"
+        android:hint="Text here"
         android:inputType="textMultiLine"
         android:maxLines="5"
         android:lines="6"

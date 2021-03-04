@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class SuccessFragment : Fragment() {
@@ -36,6 +39,9 @@ class SuccessFragment : Fragment() {
     }
        private fun onCopyClicked(){
             copyToClipboard(args.digestValue)
+           lifecycleScope.launch {
+               applyAnimation()
+           }
         }
 
     @SuppressLint("ServiceCast")
@@ -43,5 +49,17 @@ class SuccessFragment : Fragment() {
         val clipboardManager=requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val copyData=ClipData.newPlainText("digest value",hash)
         clipboardManager.setPrimaryClip(copyData)
+    }
+    private suspend fun applyAnimation(){
+        binding.include.messageView.animate().translationY(80.0F).duration=200L
+        binding.include.textView.animate().translationY(80.0F).duration=200L
+        delay(2000L)
+        binding.include.messageView.animate().translationY(-80.0F).duration=500L
+        binding.include.textView.animate().translationY(-80.0F).duration=500L
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding=null
     }
 }
